@@ -1,0 +1,8 @@
+django==1.9.6
+gunicorn==19.6.0
+psycopg2==2.6.1
+wheel==0.29.0
+django-tastypie==0.13.3
+python-dateutil==2.5.3
+python-mimeparse==1.5.2
+six==1.10.0
