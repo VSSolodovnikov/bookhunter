@@ -48,7 +48,7 @@
 
 <script type="text/javascript">
 
- $('#system-search').typeWatch({
+/* $('#system-search').typeWatch({
 
     callback: function() {
    
@@ -93,9 +93,9 @@
     highlight: true,
     allowSubmit: false,
     captureLength: 3
-  });
+  });*/
 
-/*
+
  $("#book_name").submit(function(){
  	var str = $(this).serialize();
  	$.ajax({
@@ -110,7 +110,28 @@
         } else {
           m = data.meta.total_count
         }
-     		for(i=0; i<m; i++){ 
+
+
+          for(i=0; i<m; i++) { 
+            
+            var ozonISBNUrl = data.objects[i].isbn.split(', ');
+
+            html.push("<tr>");
+            html.push("<td>" + data.objects[i].name + "</td>");
+            html.push("<td>" + data.objects[i].author + "</td>");
+            html.push("<td>" + data.objects[i].publisher + "</td>");
+            html.push("<td><a href=\"http://www.ozon.ru/?context=search&text=" + ozonISBNUrl[0] + "\" target=\"blank\">OZON</a><br />");
+            html.push("<a href=\"http://www.labirint.ru/search/" + ozonISBNUrl[0] + "/\" target=\"blank\">Labirint</a><br />");
+            html.push("<a href=\"http://read.ru/search/?search=" + ozonISBNUrl[0] + "\" target=\"blank\">Read.ru</a><br />");
+            
+            html.push("</td>");
+            html.push("</tr>");
+          };
+        
+          // $('#res_content').html(html.join(''));
+          $('#tab_res').html(html.join(''));
+
+/*     		for(i=0; i<m; i++){ 
      			html.push("<br />" + i + "<br />");
      			$.each(data.objects[i], function(key, value){
 	   			   	html.push(key + " : " + value + "<br />");
@@ -118,6 +139,8 @@
    			};
 
      		$('#res_content').html(html.join(''));
+*/
+
 
      		//alert(data.meta.limit);
      		
@@ -125,7 +148,7 @@
  	});
  	return false;
  })
-*/
+
 
 $(document).ready(function() {
     var activeSystemClass = $('.list-group-item.active');
@@ -180,7 +203,10 @@ $(document).ready(function() {
 <style type="text/css">
 
 #imaginary_container{
-    margin-top:20%; /* Don't copy this */
+    margin-top:10%;
+    width: 750px;
+    margin-right: auto;
+    margin-left: auto;
 }
 .stylish-input-group .input-group-addon{
     background: white !important; 
